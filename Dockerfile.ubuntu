@@ -22,6 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Add Microsoft repository and install MS SQL ODBC driver
+# Note: The application code now auto-detects available SQL Server drivers and has multiple fallback options
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key adv --keyserver keyserver.ubuntu.com --recv-keys && \
     curl https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
     apt-get update && \

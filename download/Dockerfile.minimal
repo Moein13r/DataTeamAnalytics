@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Copy requirements and install most Python dependencies
 COPY dependencies_list.txt .
 # Exclude SQL Server specific packages
+# Note: This is for demo purposes only - SQL Server connectivity won't work with this build
+# The UI will still load but database connections will fail
 RUN grep -v "pymssql\|pyodbc\|sqlalchemy" dependencies_list.txt > minimal_requirements.txt && \
     pip install --no-cache-dir -r minimal_requirements.txt
 

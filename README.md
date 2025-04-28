@@ -91,3 +91,13 @@ docker run -p 5000:5000 sql-uml-generator-minimal
 ```
 
 Note: When using Docker, make sure your SQL Server instance is accessible from the container. You may need to use the host IP address (not localhost) when connecting to SQL Server from inside the container.
+
+## SQL Server Connection Flexibility
+
+The application has been enhanced with smart connection capabilities:
+
+- **Auto-detection of SQL Server drivers**: The application will automatically detect and use available SQL Server ODBC drivers (18, 17, or others)
+- **Multiple connection methods**: If one connection approach fails, the application will try alternative methods
+- **Both ODBC and native connections**: The system supports both pyodbc and pymssql connections for maximum compatibility
+
+This makes the application more robust when run in various environments, especially Docker containers.

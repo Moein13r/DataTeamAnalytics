@@ -2,7 +2,7 @@ modules = ["python-3.11"]
 
 [nix]
 channel = "stable-24_05"
-packages = ["glibcLocales"]
+packages = ["coreutils", "glibcLocales", "graphviz", "pgadmin4", "pkg-config", "unixODBC"]
 
 [deployment]
 deploymentTarget = "autoscale"

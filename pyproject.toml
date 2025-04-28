@@ -5,9 +5,16 @@ description = "Add your description here"
 requires-python = ">=3.11"
 dependencies = [
     "chardet>=5.2.0",
+    "networkx>=3.4.2",
     "numpy>=2.2.5",
     "openai>=1.76.0",
     "pandas>=2.2.3",
     "plotly>=6.0.1",
+    "pydot>=3.0.4",
+    "pymssql>=2.3.4",
+    "pyodbc>=5.2.0",
+    "python-pptx>=1.0.2",
+    "sqlalchemy>=2.0.40",
+    "sqlparse>=0.5.3",
     "streamlit>=1.44.1",
 ]

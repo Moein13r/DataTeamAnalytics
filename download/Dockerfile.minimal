@@ -1,0 +1,24 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# Install minimal system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    graphviz \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements and install most Python dependencies
+COPY dependencies_list.txt .
+# Exclude SQL Server specific packages
+RUN grep -v "pymssql\|pyodbc\|sqlalchemy" dependencies_list.txt > minimal_requirements.txt && \
+    pip install --no-cache-dir -r minimal_requirements.txt
+
+# Copy application files
+COPY *.py .
+COPY .streamlit/ .streamlit/
+
+# Expose port
+EXPOSE 5000
+
+# Set the entrypoint
+ENTRYPOINT ["streamlit", "run", "sql_uml_app.py", "--server.port=5000", "--server.address=0.0.0.0"]

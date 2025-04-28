@@ -62,18 +62,32 @@ You can also run this application using Docker:
    docker-compose down
    ```
 
-### Manual Docker Build
+### Alternative Docker Builds
 
-If you prefer to build the Docker image manually:
+We provide multiple Dockerfile options for different environments:
 
-1. Build the image:
-   ```
-   docker build -t sql-uml-generator .
-   ```
+#### Standard Build (Dockerfile)
+- Uses Debian slim with Microsoft SQL Server drivers
+- Full functionality including SQL Server connectivity
+```
+docker build -t sql-uml-generator .
+docker run -p 5000:5000 sql-uml-generator
+```
 
-2. Run the container:
-   ```
-   docker run -p 5000:5000 sql-uml-generator
-   ```
+#### Ubuntu Build (Dockerfile.ubuntu)
+- Uses Ubuntu 22.04 with Microsoft SQL Server drivers
+- Try this if the standard build has issues with SQL Server drivers
+```
+docker build -t sql-uml-generator-ubuntu -f Dockerfile.ubuntu .
+docker run -p 5000:5000 sql-uml-generator-ubuntu
+```
 
-Note: When using Docker, make sure your SQL Server instance is accessible from the container. You may need to use the host IP address instead of localhost when connecting to SQL Server.
+#### Minimal Build (Dockerfile.minimal)
+- Minimal build without SQL Server drivers
+- Use for demo purposes only when SQL Server connectivity is not needed
+```
+docker build -t sql-uml-generator-minimal -f Dockerfile.minimal .
+docker run -p 5000:5000 sql-uml-generator-minimal
+```
+
+Note: When using Docker, make sure your SQL Server instance is accessible from the container. You may need to use the host IP address (not localhost) when connecting to SQL Server from inside the container.

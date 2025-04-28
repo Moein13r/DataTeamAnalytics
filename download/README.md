@@ -45,3 +45,35 @@ A tool that generates UML diagrams from SQL Server databases, analyzes database 
 - Python 3.8+
 - SQL Server instance accessible from the host running the application
 - Graphviz (for UML diagram generation)
+
+## Docker Deployment
+
+You can also run this application using Docker:
+
+1. Build and start the container:
+   ```
+   docker-compose up -d
+   ```
+
+2. The application will be available at http://localhost:5000
+
+3. To stop the container:
+   ```
+   docker-compose down
+   ```
+
+### Manual Docker Build
+
+If you prefer to build the Docker image manually:
+
+1. Build the image:
+   ```
+   docker build -t sql-uml-generator .
+   ```
+
+2. Run the container:
+   ```
+   docker run -p 5000:5000 sql-uml-generator
+   ```
+
+Note: When using Docker, make sure your SQL Server instance is accessible from the container. You may need to use the host IP address instead of localhost when connecting to SQL Server.

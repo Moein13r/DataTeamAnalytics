@@ -611,7 +611,7 @@ def show_sql_server_uml_page():
                         else:
                             st.warning("No user databases found on the server.")
                     else:
-                        st.error(f"Connection failed")
+                        st.error(f"Connection failed: {error}")
                 except Exception as e:
                     st.error(f"Error connecting to SQL Server: {str(e)}")
         
